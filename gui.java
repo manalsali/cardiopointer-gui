@@ -1,38 +1,20 @@
+import java.awt.*;
+import java.awt.event.*;
 
-
-import java.awt.BorderLayout;
-import java.awt.Container;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.JSeparator;
-import javax.swing.JSlider;
-import javax.swing.JTabbedPane;
-import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+@SuppressWarnings("serial")
 public class gui extends JFrame {
 
 	JPanel adjustmentPanel;
 	JPanel heartPanel;
 	JPanel crossSectionPanel;
 	JPanel rightSection;
-	static Container cp;
+	Container cp;
+	JFileChooser jfc;
 
 	public gui() {
 
@@ -42,6 +24,8 @@ public class gui extends JFrame {
 		adjustmentPanel = new JPanel(new GridLayout(2, 1));
 		heartPanel = new JPanel();
 		crossSectionPanel = new JPanel();
+		
+		jfc = new JFileChooser();
 
 		// a right panel to hold adjustment and
 		rightSection = new JPanel(new GridLayout(2, 1));
@@ -302,6 +286,15 @@ public class gui extends JFrame {
 		JMenu menuHelp = new JMenu("Help");
 		JMenuItem documentation = new JMenuItem("Documentation");
 		menuHelp.add(documentation);
+		documentation.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				initDocumentation();
+			}
+			
+		});
 
 		// just added menus to menubar
 		menuBar.add(menuFile);
@@ -311,7 +304,7 @@ public class gui extends JFrame {
 	}
 
 	public void openBrowser() {
-		JFileChooser jfc = new JFileChooser();
+		
 		jfc.setFileFilter(new FileNameExtensionFilter("DICOM Files", "dcm"));
 		int returnVal = jfc.showOpenDialog(null);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
@@ -415,16 +408,11 @@ public class gui extends JFrame {
 					customRotateModel(x,button);
 				} else {
 					
-					// tell them empty
 					rotate.setVisible(false);
 					rotate.dispose();
 					
-					
 				}
 			}
-
-			
-			
 		});
 		
 		cancel.addActionListener(new ActionListener() {
@@ -448,17 +436,76 @@ public class gui extends JFrame {
 	
 	public void enableLeap() {
 		JOptionPane.showMessageDialog(gui.this, "Leap Motion Device Enabled", "Enabled", JOptionPane.INFORMATION_MESSAGE);
+		// insert code here to enable leap
 	}
 	
 	public void disableLeap() {
 		JOptionPane.showMessageDialog(gui.this, "Leap Motion Device Disabled", "Disabled", JOptionPane.INFORMATION_MESSAGE);
+		// insert code here to disable leap
 	}
 	
 	public void customRotateModel(int rotateVal, String direction) {
-		// do something... 
+		// insert code here to rotate the heart 
+	}
+	
+	public void initDocumentation() {
+		
+		JFrame docSplitPane = new JFrame();
+		docSplitPane.setTitle("Documentation");
+		JPanel menu = new JPanel();
+		JPanel doc = new JPanel();
+		
+		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, menu, doc);
+		splitPane.setDividerLocation(250);
+		
+		// setting background colours
+		menu.setBackground(Color.WHITE);
+		doc.setBackground(Color.WHITE);
+		
+		// documentation things
+		// setting the text area panel
+		final JTextArea textArea = new JTextArea();
+		textArea.setEditable(false);
+		doc.add(textArea);
+		
+		// setting up the menu contents
+		String[] contentList = {"1.0 Introduction", 
+				"2.0 Basic Guides",
+				"3.0 User Interface",
+				"4.0 Additional Hardware and Installation",
+				"5.0 Frequently Asked Questions"
+		};
+		final String[] contentInfo = {"1.0 Introduction", 
+				"2.0 Basic Guides",
+				"3.0 User Interface",
+				"4.0 Additional Hardware and Installation",
+				"Frequently Asked Questions"
+		};
+		final JList menuList = new JList(contentList);
+		menuList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
+		// aading functionalities to jlist
+		menuList.addListSelectionListener(new ListSelectionListener() {
+
+			@Override
+			public void valueChanged(ListSelectionEvent arg0) {
+				textArea.setText(contentInfo[menuList.getSelectedIndex()]);
+			}
+			
+		});
+		
+		menu.add(menuList);
+		// basic things needed
+		docSplitPane.add(splitPane);
+		docSplitPane.setSize(500,300);
+		docSplitPane.setVisible(true);
+		docSplitPane.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		
+		
+		
 		
 	}
- 
+	
 	public static void main(String[] args) {
 
 		// in the case that user is using MAC OS, uses native menu features
