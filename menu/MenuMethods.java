@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -27,6 +28,8 @@ import adjustment_panel.AdjustmentMethods;
 
 public class MenuMethods {
 
+	public static File[] dicomFiles = null;
+	
 	static void importECG() {
 		importBrowser();
 	}
@@ -218,10 +221,12 @@ public class MenuMethods {
 
 	static void importBrowser() {
 		JFileChooser jfc = new JFileChooser();
-		jfc.setFileFilter(new FileNameExtensionFilter("DICOM Files", "dcm"));
+		//jfc.setFileFilter(new FileNameExtensionFilter("DICOM Files", "dcm"));
+		jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		int returnVal = jfc.showOpenDialog(null);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
-			// File dicom = jfc.getSelectedFile();
+			dicomFiles = jfc.getSelectedFiles();
+			System.out.println(jfc.getSelectedFile().getAbsolutePath());
 		}
 	}
 
