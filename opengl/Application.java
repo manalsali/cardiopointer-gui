@@ -3,9 +3,8 @@ package opengl;
 import heart_panel.HeartInterface;
 
 import org.lwjgl.LWJGLException;
-import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
-import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.DisplayMode;
 
 /**
  * 
@@ -22,7 +21,7 @@ public class Application {
 		t = new Thread() {
 			public void run() {
 				try {
-					// Display.setDisplayMode(new DisplayMode(700, 500));
+					Display.setDisplayMode(new DisplayMode(700, 500));
 					Display.setParent(HeartInterface.canvas);
 					Display.setVSyncEnabled(true);
 					Display.create();

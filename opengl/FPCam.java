@@ -8,84 +8,51 @@ import static org.lwjgl.opengl.GL11.glLoadIdentity;
 import static org.lwjgl.opengl.GL11.glMatrixMode;
 import static org.lwjgl.util.glu.GLU.gluPerspective;
 
-import java.nio.FloatBuffer;
-
-import org.lwjgl.BufferUtils;
-import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector3f;
 
 public class FPCam {
 
-	private Vector3f eye,rotation = null; 
+	private Vector3f eye, rotation;
 
-	private float yaw, pitch, roll;
+	private float fov, aspect, near, far;
 
-	public FPCam(float x, float y, float z) {
-		yaw = 0;
-		pitch = 0;
-		roll = 0;
-		
-		eye = new Vector3f(x, y, z);
+	public FPCam(float fov, float aspect, float near, float far) {
+		eye = new Vector3f(0, 0, 0);
 		rotation = new Vector3f(0, 0, 0);
-		
+		this.fov = fov;
+		this.aspect = aspect;
+		this.near = near;
+		this.far = far;
 		initProjection();
 	}
 
 	private void initProjection() {
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
-		gluPerspective(70,
-				(float) Display.getWidth() / (float) Display.getHeight(), 0.3f,
-				1000);
+		gluPerspective(fov, aspect, near, far);
 		glMatrixMode(GL_MODELVIEW);
 		glEnable(GL_DEPTH_TEST);
 	}
 
-	// moves the graphic in, out, left, right
-	public void move(float amt, int dir) {
+	public void useView() {
+		GL11.glRotatef(rotation.x, 1, 0, 0);
+		GL11.glRotatef(rotation.y, 0, 1, 0);
+		GL11.glRotatef(rotation.z, 0, 0, 1);
+		GL11.glTranslatef(eye.x, eye.y, eye.z);
+	}
+
+	public void move(float amt, float dir) {
 		eye.z += amt * Math.sin(Math.toRadians(rotation.y + 90 * dir));
 		eye.x += amt * Math.cos(Math.toRadians(rotation.y + 90 * dir));
 	}
 
-	public void lookThrough() {
-	
-		GL11.glRotatef(getPitch(), 1, 0, 0);
-		GL11.glRotatef(getYaw(), 0, 1, 0);
-		GL11.glRotatef(getRoll(), 0, 0, 1);
-		GL11.glTranslatef(eye.x, eye.y, eye.z);
-	}
-	
-	public float getYaw() {
-		return yaw;
-	}
-	
-	public float getRoll() {
-		return roll;
-	}
-	
-	public float getPitch() {
-		return pitch;
-	}
-	
-
-	
-
-	/**	public void setModelViewMatrix() {
-		FloatBuffer m = BufferUtils.createFloatBuffer(16);
-		Vector3f eVec = new Vector3f(eye.x, eye.y, eye.z);
-		m.put(new float[] { u.x, v.x, n.x, 0, u.y, v.y, n.y, 0, u.z, v.z, n.z,
-				0, -Vector3f.dot(eVec, u), -Vector3f.dot(eVec, v),
-				-Vector3f.dot(eVec, n), 1 });
-		GL11.glMatrixMode(GL_MODELVIEW);
-		GL11.glLoadMatrix(m);
-
+	public void rotateY(float amt) {
+		rotation.y += amt;
 	}
 
-	public void slide(float delU, float delV, float delN) {
-		eye.x += delU * u.x + delV * v.x + delN * n.x;
-		eye.y += delU * u.y + delV * v.y + delN * n.y;
-		eye.z += delU * u.z + delV * v.z + delN * n.z;
+	public void rotateX(float amt) {
+		rotation.x += amt;
 	}
-	**/
+
 }

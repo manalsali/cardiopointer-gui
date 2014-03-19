@@ -1,8 +1,5 @@
 package opengl;
 
-import java.nio.FloatBuffer;
-
-import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector3f;
@@ -66,13 +63,14 @@ public class Camera {
 		// Enable depth testing
 		GL11.glEnable(GL11.GL_DEPTH_TEST);
 	}
-
+	
 	/**
 	 * Apply the camera's transformations.
 	 */
 	public void apply() {
 		// Make the view matrix an identity.
 		view.setIdentity();
+	//	GL11.glLoadIdentity();
 
 		// Rotate the view
 		Matrix4f.rotate((float) Math.toRadians(rotation.x), xAxis, view, view);
@@ -123,6 +121,7 @@ public class Camera {
 				* Math.sin(Math.toRadians(rotation.y + 90 * direction));
 		position.x += amount
 				* Math.cos(Math.toRadians(rotation.y + 90 * direction));
+	
 	}
 
 	/**
