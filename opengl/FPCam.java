@@ -45,8 +45,20 @@ public class FPCam {
 	public void move(float amt, float dir) {
 		eye.z += amt * Math.sin(Math.toRadians(rotation.y + 90 * dir));
 		eye.x += amt * Math.cos(Math.toRadians(rotation.y + 90 * dir));
+		
+			
+		//		eye.x += amt * rotation.x;
+//		eye.y += amt * rotation.y;
+//		eye.z += amt * rotation.z;
+		
 	}
 
+	public void walkForward(float distance) {
+		eye.x -= distance * (float) Math.sin(Math.toRadians(rotation.y));
+		eye.y += distance * (float) Math.tan(Math.toRadians(rotation.x));
+		eye.z += distance * (float) Math.cos(Math.toRadians(rotation.y));
+		}
+	
 	public void rotateY(float amt) {
 		rotation.y += amt;
 	}

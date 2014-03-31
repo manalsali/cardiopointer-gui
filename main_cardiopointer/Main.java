@@ -10,7 +10,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import opengl.PrototypeGLContext;
 import menu.MenuInterface;
 import adjustment_panel.AdjustmentInterface;
 import cross_section_panel.CrossSectionAdjustment;
@@ -25,9 +24,23 @@ public class Main extends JFrame {
 		new MenuInterface();
 
 		Container cp = this.getContentPane();
-
+//
+//		cp.setLayout(new GridLayout(2,1));
+//		
+//		
+//		// top panel with heart interface
+//		JPanel topPanel = new JPanel(new BorderLayout());
+//		
+//		topPanel.add(new HeartInterface(), BorderLayout.CENTER);
+//		topPanel.add(new AdjustmentInterface(), BorderLayout.EAST);
+//		
+//		JPanel bottomPanel = new JPanel(new GridLayout(1,1));
+//		
+//		bottomPanel.add(new CrossSectionHost());
+		
+		
 		cp.setLayout(new BorderLayout());
-
+		
 		JPanel rightHandPanel = new JPanel(new BorderLayout());
 		// add adjustment panel
 		rightHandPanel.add(new AdjustmentInterface(), BorderLayout.NORTH);
@@ -41,7 +54,10 @@ public class Main extends JFrame {
 
 		cp.add(new HeartInterface(), BorderLayout.CENTER);
 		cp.add(rightHandPanel, BorderLayout.EAST);
-
+//
+		
+	//	add(topPanel);
+	//	add(bottomPanel);
 		setSize(Toolkit.getDefaultToolkit().getScreenSize());
 		setVisible(true);
 		setResizable(true);

@@ -188,7 +188,7 @@ public class PrototypeGLContext extends Application {
 		boolean rotateDown = Keyboard.isKeyDown(Keyboard.KEY_DOWN);
 
 		if(forward)
-			camera.move(0.01f,1);
+			camera.walkForward(0.01f);//camera.move(0.01f,1);
 		
 		if(backward)
 			camera.move(-0.01f,1);
@@ -200,7 +200,7 @@ public class PrototypeGLContext extends Application {
 			camera.move(-0.01f,0);
 
 		if(rotateRight)
-			camera.rotateY(1f);
+			camera.rotateY(-1f);
 			
 		if(rotateLeft)
 			camera.rotateY(1f);
@@ -209,7 +209,7 @@ public class PrototypeGLContext extends Application {
 			camera.rotateX(1f);
 			
 		if(rotateDown)
-			camera.rotateY(1f);
+			camera.rotateX(-1f);
 		
 		glClear(GL_COLOR_BUFFER_BIT);
 		GL11.glLoadIdentity();

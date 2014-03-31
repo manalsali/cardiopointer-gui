@@ -9,14 +9,16 @@ public class MenuListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		switch (e.getActionCommand()) {
-		case "Import ECG":
-			MenuMethods.importECG();
-			break;
-		case "Import MRI":
-			MenuMethods.importMRI();
-			break;
-		case "Import CT":
-			MenuMethods.importCT();
+//		case "Import ECG":
+//			MenuMethods.importECG();
+//			break;
+//		case "Import MRI":
+//			MenuMethods.importMRI();
+//			break;
+//		case "Import CT":
+//			MenuMethods.importCT();
+		case "Import DICOM":
+			MenuMethods.importBrowser();
 			break;
 		case "Exit":
 			MenuMethods.exit();

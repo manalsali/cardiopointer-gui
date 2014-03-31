@@ -16,7 +16,7 @@ public class MenuInterface {
 	// names of menus, menuitems etc
 	static String[] menuNames = { "File", "Edit", "Tools", "Help" };
 	String[] fileNames = { "Import DICOM", "s", "Exit" };
-	String[] importNames = { "Import ECG", "Import MRI", "Import CT" };
+	//String[] importNames = { "Import ECG", "Import MRI", "Import CT" };
 	String[] editNames = { "Reset Model", "Clear Models", "s",
 			"Increase Brightness", "Decrease Brightness", "s", "Increase Contrast", "Decrease Contrast", "s", "Zoom In",
 			"Zoom Out", "s", "Rotate" };
@@ -41,7 +41,7 @@ public class MenuInterface {
 
 		menus = new JMenu[menuNames.length];
 		fileItems = new JMenuItem[fileNames.length];
-		importItems = new JMenuItem[importNames.length];
+		//importItems = new JMenuItem[importNames.length];
 		editItems = new JMenuItem[editNames.length];
 		rotateItems = new JMenuItem[rotateNames.length];
 		toolsItems = new JMenuItem[toolsNames.length];
@@ -54,7 +54,7 @@ public class MenuInterface {
 		}
 
 		addMenuContents(0, fileNames, fileItems);
-		addSubMenu(fileItems[0], importItems, importNames);
+		//addSubMenu(fileItems[0], importItems, importNames);
 		addMenuContents(1, editNames, editItems);
 		addSubMenu(editItems[12], rotateItems, rotateNames);
 		addMenuContents(2, toolsNames, toolsItems);
@@ -73,12 +73,13 @@ public class MenuInterface {
 				menus[menuNumber].add(menuItem[i]);
 				menuItem[i].setActionCommand(itemNames[i]);
 				menuItem[i].addActionListener(listener);
-			} else if (itemNames[i].equals("Import DICOM")) {
-				menuItem[i] = new JMenu(itemNames[i]);
-				menus[menuNumber].add(menuItem[i]);
-				menuItem[i].setActionCommand(itemNames[i]);
-				menuItem[i].addActionListener(listener);
-			}
+			} 
+//			else if (itemNames[i].equals("Import DICOM")) {
+////				menuItem[i] = new JMenu(itemNames[i]);
+////				menus[menuNumber].add(menuItem[i]);
+////				menuItem[i].setActionCommand(itemNames[i]);
+////				menuItem[i].addActionListener(listener);
+//			}
 
 			else {
 				menuItem[i] = new JMenuItem(itemNames[i]);

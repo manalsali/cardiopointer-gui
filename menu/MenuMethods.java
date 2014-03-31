@@ -28,7 +28,7 @@ import adjustment_panel.AdjustmentMethods;
 
 public class MenuMethods {
 
-	public static File[] dicomFiles = null;
+	public static String[] dicomFileNames = null;
 	
 	static void importECG() {
 		importBrowser();
@@ -221,12 +221,23 @@ public class MenuMethods {
 
 	static void importBrowser() {
 		JFileChooser jfc = new JFileChooser();
-		//jfc.setFileFilter(new FileNameExtensionFilter("DICOM Files", "dcm"));
-		jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+		jfc.setMultiSelectionEnabled(true);
+		
 		int returnVal = jfc.showOpenDialog(null);
+		File dicomFile[] = null;
+		
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
-			dicomFiles = jfc.getSelectedFiles();
-			System.out.println(jfc.getSelectedFile().getAbsolutePath());
+			dicomFile = jfc.getSelectedFiles();
+			dicomFileNames = new String[dicomFile.length];
+			for(int i = 0; i < dicomFile.length; i++) 
+				dicomFileNames[i] = dicomFile[i].getAbsolutePath();
+
+			
+		/*
+		 *  CALL A METHOD WITH PARAMTER dicomFileNames to start the processing, 
+		 *  this is a list of files with the dicom files. 
+		 */
+			
 		}
 	}
 
