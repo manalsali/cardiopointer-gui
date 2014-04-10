@@ -4,8 +4,8 @@ package heart_panel;
  * will contain information regarding the 3d heart model
  */
 
+import java.awt.BorderLayout;
 import java.awt.Canvas;
-import java.awt.GridLayout;
 
 import javax.swing.JPanel;
 
@@ -41,8 +41,10 @@ public class HeartInterface extends JPanel {
 			};
 
 			canvas.setSize(800, 600);
-			this.setLayout(new GridLayout(1, 1));
-			this.add(canvas);
+			setLayout(new BorderLayout());
+			this.add(canvas, BorderLayout.CENTER);
+			// adding the controls to the layout
+			this.add(new Controls(), BorderLayout.SOUTH);
 			canvas.setFocusable(true);
 			canvas.requestFocus();
 			canvas.setIgnoreRepaint(true);

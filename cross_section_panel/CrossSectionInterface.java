@@ -14,7 +14,11 @@ public class CrossSectionInterface extends JPanel {
 
 	public CrossSectionInterface() {
 
-		tabbedPane = new JTabbedPane();
+		setLayout(new GridLayout(2,1,5,5));
+		add(new y_plane());
+		add(new z_plane());
+		
+		/**tabbedPane = new JTabbedPane();
 		panelTabs = new JPanel[tabbedNames.length];
 
 		for (int i = 0; i < panelTabs.length; i++) {
@@ -24,6 +28,6 @@ public class CrossSectionInterface extends JPanel {
 		}
 
 		setLayout(new GridLayout(1, 1));
-		add(tabbedPane);
+		add(tabbedPane); **/
 	}
 }
