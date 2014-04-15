@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 
 public class Controls extends JPanel {
 
-	String[] controls = {"Capture Model", "Capture X", "Capture Y", "Reset Heart"};
+	String[] controls = {"Capture Heart", "Capture X", "Capture Y", "Reset Heart"};
 	JButton[] buttons;
 	
 	public Controls() {

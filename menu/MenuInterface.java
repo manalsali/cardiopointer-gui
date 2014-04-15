@@ -7,7 +7,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JSeparator;
 
-import adjustment_panel.AdjustmentListener;
 
 public class MenuInterface {
 
@@ -23,8 +22,8 @@ public class MenuInterface {
 	String[] rotateNames = { "90\u00B0 AC", "90\u00B0 ACW", "180\u00B0", "s",
 			"Custom" };
 	String[] toolsNames = { "Enable Leap Motion Device",
-			"Disable Leap Motion Device", "s", "Capture Model",
-			"Capture Cross Section" };
+			"Disable Leap Motion Device", "s", "Capture Heart",
+			"Capture Y", "Capture X" };
 	String[] helpNames = { "Documentation" };
 
 	JMenu menus[];

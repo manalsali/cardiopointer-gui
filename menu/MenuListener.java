@@ -1,5 +1,7 @@
 package menu;
 
+import heart_panel.ControlsListener;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -59,12 +61,18 @@ public class MenuListener implements ActionListener {
 		case "Disable Leap Motion Device":
 			MenuMethods.disableLeap();
 			break;
-		case "Capture Model":
-			MenuMethods.captureModel();
+		case "Capture Heart":
+			ControlsListener.generateImage("Capture Heart");
 			break;
-		case "Capture Cross Section":
-			MenuMethods.captureCrossSection();
+		case "Capture X":
+			ControlsListener.generateImage("Capture X");
 			break;
+		case "Capture Y":
+			ControlsListener.generateImage("Capture Y");
+			break;
+//		case "Capture Cross Section":
+//			MenuMethods.captureCrossSection();
+//			break;
 		case "Documentation":
 			MenuMethods.documentation();
 			break;

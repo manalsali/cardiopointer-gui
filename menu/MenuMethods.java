@@ -1,6 +1,8 @@
 package menu;
 
 
+import heart_panel.ControlsListener;
+
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -22,32 +24,17 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.filechooser.FileNameExtensionFilter;
-
-import adjustment_panel.AdjustmentMethods;
 
 public class MenuMethods {
 
 	public static String[] dicomFileNames = null;
 	
-	static void importECG() {
-		importBrowser();
-	}
-
-	static void importMRI() {
-		importBrowser();
-	}
-
-	static void importCT() {
-		importBrowser();
-	}
-
 	static void exit() {
 		System.exit(0);
 	}
 
 	static void resetModel() {
-		AdjustmentMethods.resetModel();
+		ControlsListener.resetModel();
 	}
 
 	static void clearModels() {
@@ -157,16 +144,9 @@ public class MenuMethods {
 	}
 
 	static void captureModel() {
-		AdjustmentMethods.captureModel();
+		ControlsListener.generateImage("Capture Heart");
 	}
 
-	static void captureCrossSection() {
-		AdjustmentMethods.captureCrossSection();
-	}
-
-	/*
-	 * generates documentation
-	 */
 	static void documentation() {
 
 		JFrame docSplitPane = new JFrame("Documentation");
@@ -234,8 +214,9 @@ public class MenuMethods {
 
 			
 		/*
-		 *  CALL A METHOD WITH PARAMTER dicomFileNames to start the processing, 
-		 *  this is a list of files with the dicom files. 
+		 *  CALL A METHOD WITH PARAMETER dicomFileNames to start the processing, 
+		 *  this is a list of file names of the list of DICOM files within the folder.
+		 *  User has to multi select all the files they wish to import. 
 		 */
 			
 		}
